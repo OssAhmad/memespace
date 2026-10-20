@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "memespace-coming-soon",
+  "account_id": "2eff40a2255f98ece1b44ccb4cc0f22e",
+  "compatibility_date": "2026-10-19",
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+  // After registering memespace.site and activating it in this Cloudflare account,
+  // add a comma after the assets block and uncomment the routes below, then deploy.
+  // "routes": [
+  //   { "pattern": "memespace.site", "custom_domain": true },
+  //   { "pattern": "www.memespace.site", "custom_domain": true }
+  // ]
+}
