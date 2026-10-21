@@ -84,6 +84,9 @@ The app currently reserves at most 40 email requests per rolling day and 1,000 p
 31 days, plus address/IP throttles. This does not reserve capacity at Resend:
 other apps in your Resend account still share its actual limits. Failed sends
 also consume this app's reservation. These bounds are in `worker/auth.js`.
+Allow at least 60 seconds between requests for the same address. At most five
+attempts per address and ten per IP are allowed within a rolling hour. Updating
+an API key does not reset these limits.
 
 If email secrets are absent, the graph and readers work, while the sign-in
 dialog reports that email sign-in is unavailable. You can configure them later.
@@ -97,6 +100,8 @@ npm run deploy
 
 `deploy` rebuilds `dist/` and deploys the Worker plus static assets. It uses the
 production config; it does not use `wrangler.local.jsonc` or upload local D1 data.
+Updating a secret with `wrangler secret put` does not upload local code fixes;
+run `npm run deploy` to publish those changes.
 Never deploy with the local config. The scripts do not run remote migrations
 implicitly; apply new migrations explicitly before a later release that needs them.
 

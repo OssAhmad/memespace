@@ -1,5 +1,6 @@
 // Passwordless mail codes and host-only sessions follow the existing ossahmad.org approach.
 import { json, fail, body, now, localAuth, hash, token, limit, cleanName, emailKey } from './http.js';
+import { sendSignInEmail } from './mail.js';
 const SESSION_AGE = 5 * 86400;
 const configured = (request, env) => Boolean(env.DB && env.AUTH_SECRET?.length >= 32 && (localAuth(request, env) || (env.RESEND_API_KEY && env.AUTH_FROM)));
 function cookieName(request) { return new URL(request.url).protocol === 'https:' ? '__Host-memespace_session' : 'memespace_local_session'; }
@@ -45,12 +46,7 @@ export async function requestCode(request, env) {
   if (!localAuth(request, env)) {
     let sent = false;
     try {
-      const response = await fetch('https://api.resend.com/emails', {
-        method: 'POST', redirect: 'error', signal: AbortSignal.timeout(10000),
-        headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json', 'Idempotency-Key': `memespace-${id}` },
-        body: JSON.stringify({ from: env.AUTH_FROM, to: [email], subject: 'Your Memespace sign-in code', text: `Your Memespace code: ${code}\n\nThis code expires in 10 minutes. Enter it only on ${new URL(request.url).origin}.\nIf you did not request it, ignore this email.` })
-      });
-      sent = response.ok; await response.body?.cancel();
+      sent = await sendSignInEmail(env, { email, code, id, origin: new URL(request.url).origin });
     } catch { /* No automatic retry: the provider might already have accepted it. */ }
     if (!sent) fail('The email could not be sent. Please try again later.', 503);
   }
