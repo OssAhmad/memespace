@@ -2,18 +2,31 @@
   "name": "memespace",
   "version": "0.1.0",
   "private": true,
-  "description": "The memespace coming soon page, hosted on Cloudflare Workers Static Assets.",
+  "description": "Memespace: a graph of GitHub-backed publications and the minds around them.",
   "scripts": {
-    "dev": "wrangler dev --local --ip 127.0.0.1",
-    "review": "node scripts/preview.mjs",
-    "build:review": "node scripts/build-preview.mjs",
-    "check:deploy": "wrangler deploy --dry-run",
-    "deploy": "wrangler deploy"
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && npm run db:local && wrangler dev --config wrangler.local.jsonc --local --ip 127.0.0.1",
+    "review": "npm run dev",
+    "build:review": "npm run build",
+    "db:local": "wrangler d1 migrations apply DB --local --config wrangler.local.jsonc",
+    "configure:d1": "node scripts/configure-d1.mjs",
+    "publish:meme": "node scripts/import-meme.mjs",
+    "test": "npm run build && node --test --test-concurrency=1 tests/*.test.mjs",
+    "check:deploy": "npm run build && node scripts/deploy.mjs --dry-run",
+    "deploy": "npm run build && node scripts/deploy.mjs",
+    "verify": "node scripts/verify.mjs"
   },
   "devDependencies": {
+    "esbuild": "0.28.2",
+    "miniflare": "5.20261012.0-beta",
     "wrangler": "4.151.0"
   },
   "engines": {
     "node": ">=22.14.0"
+  },
+  "dependencies": {
+    "force-graph": "1.52.0",
+    "markdown-it": "15.0.3",
+    "sanitize-html": "2.18.1"
   }
 }

@@ -4,3 +4,6 @@ node_modules/
 .env*
 npm-debug.log*
 .preview-dist/
+dist/
+generated/
+.test-tmp/

@@ -1,111 +1,83 @@
-# memespace
+# Memespace
 
-A collaborative website for thinkers to create, edit and publish memes.
+A graph of ideas and the Minds around them. GitHub holds the working repositories;
+Memespace serves editions you deliberately publish.
 
-The current site displays only **coming soon...**, centered in blue on a light
-background, for **memespace.site**.
-It uses plain HTML/CSS and Cloudflare Workers Static Assets. There is no build step,
-backend, database, external font, analytics, or signup form.
+The production target is the existing **winter-violet-342b** Worker. Both
+**memespace.site** and **memespace.ossahmad.org** use it. Deployment is owner-run.
 
-## Local preview
+## Review locally
 
-Use Node.js 22.14 or newer. Run these commands from this repository:
+Use Node.js 22.14 or newer (Node 24 LTS is also suitable):
 
 ```powershell
-npm install
+npm ci
 npm run dev
 ```
 
-Open the local URL Wrangler prints, normally http://127.0.0.1:8787.
-Edit `public/index.html` for the copy and `public/styles.css` for the design.
+Open **http://127.0.0.1:8787/**. This builds the static pages, applies migrations
+to a **local** D1 database, and starts Wrangler on loopback. Stop with Ctrl+C.
+Run `npm run build` after changing frontend files or the publication catalog,
+then reload the browser. Worker source changes reload through Wrangler.
 
-## First-step publishing scaffold (local only)
+Local sign-in displays its six-digit code in the dialog and sends no email.
+Use **Join**, with `owner@example.test`, to review the owner account and comment
+moderation. Other test email addresses create ordinary Minds. These records
+stay in `.wrangler/state/`; local data is never uploaded by deployment.
 
-There is also a separate preview of the future reading site: a library, sample
-publication pages with human/AI credits, and an about page.
+## What is implemented
 
-```powershell
-npm run review
-```
+- A full-window `force-graph` canvas with pan, zoom, drag, and floating settings.
+  Memes and Minds can be shown separately or together. Keyboard users can use
+  the equivalent node directory. Light/dark preference persists on each origin.
+- Four named Memes and two seed Minds, with `owns` and `in_love` edges.
+  All four Memes initially show **Coming soon…** because no work has been
+  approved for publication yet. `meme.md` is a short, unpublished Memespace intro
+  for you to edit and publish when ready.
+- Markdown readers, sanitized HTML, Persian/RTL content, edition file listings,
+  source links, clone commands, and GitHub proposal links.
+- Git-commit-pinned manual publication. Only marked links become graph edges;
+  unknown targets become distinctly colored placeholder nodes.
+- Resend email-code accounts, public human/AI/collective Minds, editable profiles
+  for registered Minds, and five-day host-only sessions.
+- Independent likes and belief/disbelief, pinned to the displayed edition.
+  Comments have an owner review queue at `/admin`; authors can remove their own
+  comments. Pending comments are visible only to their author and the owner.
+- An optional email claim for RayRay's existing Mind, configured before signup.
 
-Open `http://127.0.0.1:4321/`. This command uses only Node's built-in modules and
-does not need a Cloudflare login. Files in `preview/` rebuild on changes; refresh
-the page to see edits. Press Ctrl+C to stop.
+The original minimal landing page is preserved in `public/` and is also built
+at `/coming-soon`. It is not the new graph homepage.
 
-See [the preview guide](preview/README.md) for editing the examples and attaching
-real publication repositories. `npm run build:review` builds into the ignored
-`.preview-dist/` directory without starting a server.
+## Owner workflows
 
-**The preview is not published by `npm run deploy`.** That command still uploads
-only `public/`, containing the simple coming-soon page. The sample publications
-and their credits are provisional material for local review.
-
-## Cloudflare configuration
-
-- Account: `2eff40a2255f98ece1b44ccb4cc0f22e`
-- Worker: `memespace-coming-soon`
-- Assets directory: `public/` (only this directory is published)
-- Intended domains: `memespace.site` and `www.memespace.site`
-- No bindings to the existing ossahmad.org Worker or its D1 database
-
-The checked-in configuration initially targets a `workers.dev` address. Custom
-domain routes are commented out until the domain is registered and active in
-this Cloudflare account. No deployment has been performed as part of setup.
-
-## Register the domain and enable Cloudflare DNS
-
-If buying through Cloudflare Registrar, use **Domain Registration → Register
-Domains** in the existing account, search for `memespace.site`, review availability,
-registration/renewal prices and the registration term, then complete the purchase
-and any email verification. Cloudflare configures its nameservers automatically.
-
-If buying through another registrar, first buy the domain, then onboard
-`memespace.site` into the existing Cloudflare account using the Free plan. At the
-registrar, replace the existing nameservers with the two assigned to this domain
-by Cloudflare. Wait for the domain to become **Active**. Review any imported DNS
-records; existing records on the intended Worker hostnames may need to be resolved
-before custom domains can be attached.
-
-Do not copy nameservers from another domain. No server IP address is needed for
-Workers Custom Domains; Cloudflare creates the DNS records and HTTPS certificates.
-
-## Owner-run deployment
-
-Verify the account and rehearse the deployment first:
+- [Deploy to the shared Cloudflare Worker](DEPLOY.md)
+- [Attach repositories and publish an edition](docs/PUBLISHING.md)
+- [Data model, URL conventions, and limits](docs/ARCHITECTURE.md)
 
 ```powershell
-npx wrangler whoami
+npm test
 npm run check:deploy
 ```
 
-Confirm the account and Worker names above, then publish when ready:
+While the local server is running, `npm run verify` checks routes, real 404s,
+the graph asset, JavaScript modules, and the session API without writing data.
 
-```powershell
-npm run deploy
-```
+Tests use an isolated local Worker and D1 database, including real migrations,
+authentication, authorization, publication integrity, and edition-bound responses.
+`check:deploy` only bundles and performs Wrangler's dry run. It does not upload.
 
-Wrangler prints the actual public `workers.dev` URL. This command uploads the
-page and creates or updates `memespace-coming-soon` in the configured account.
+The primary editing points are `content/catalog.json`, `web/`, `worker/`, and
+`scripts/build.mjs`. `dist/` and `generated/` are build outputs. `snapshots/`
+contains versioned publication inputs and should be committed with catalog edits.
 
-When the domain is registered and **Active**, enable the commented `routes` block
-in `wrangler.jsonc` (also add the comma after the `assets` block). Run
-`npm run check:deploy`, then `npm run deploy` again. This attaches both intended
-hostnames and lets Cloudflare manage their DNS and certificates. Keep routes in
-this file as the source of truth for later deployments.
+Project suggestions and collaboration invitations currently use GitHub Issues
+and repository invitations. Native pull requests, constitutions, federation
+rules, and large filtered graph maps are future work.
 
-Check the URL printed by Wrangler and, after domain/certificate activation,
-https://memespace.site and https://www.memespace.site. Confirm the page,
-mobile layout, and a nonexistent URL's 404 response. Save the successful deployment
-output if you want the deployment/version identifier for later rollback.
+This project is MIT-licensed. It uses [force-graph](https://github.com/vasturiano/force-graph),
+[markdown-it](https://github.com/markdown-it/markdown-it), and
+[sanitize-html](https://github.com/apostrophecms/sanitize-html). The passwordless
+sign-in and host-only session approach follows the existing ossahmad.org code;
+Memespace has its own database, configuration, and account sessions.
 
-Official references: [register a domain](https://developers.cloudflare.com/registrar/get-started/register-domain/),
-[Cloudflare DNS setup](https://developers.cloudflare.com/dns/zone-setups/full-setup/setup/),
-[static assets](https://developers.cloudflare.com/workers/static-assets/get-started/),
-[Workers Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/).
-
-
-
-
-
-First change by ossa, before Codex starts to build the world here. 
-
+> First change by ossa, before Codex starts to build the world here.

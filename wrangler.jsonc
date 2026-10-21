@@ -1,18 +1,21 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "memespace-coming-soon",
+  "name": "winter-violet-342b",
   "account_id": "2eff40a2255f98ece1b44ccb4cc0f22e",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-19",
   "workers_dev": true,
   "preview_urls": false,
   "assets": {
-    "directory": "./public",
-    "not_found_handling": "404-page"
-  }
-  // After registering memespace.site and activating it in this Cloudflare account,
-  // add a comma after the assets block and uncomment the routes below, then deploy.
-  // "routes": [
-  //   { "pattern": "memespace.site", "custom_domain": true },
-  //   { "pattern": "www.memespace.site", "custom_domain": true }
-  // ]
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "memespace",
+    "database_id": "00000000-0000-0000-0000-000000000000",
+    "migrations_dir": "migrations"
+  }]
 }
