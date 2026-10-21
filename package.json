@@ -5,6 +5,8 @@
   "description": "The memespace coming soon page, hosted on Cloudflare Workers Static Assets.",
   "scripts": {
     "dev": "wrangler dev --local --ip 127.0.0.1",
+    "review": "node scripts/preview.mjs",
+    "build:review": "node scripts/build-preview.mjs",
     "check:deploy": "wrangler deploy --dry-run",
     "deploy": "wrangler deploy"
   },

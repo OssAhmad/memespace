@@ -19,6 +19,27 @@ npm run dev
 Open the local URL Wrangler prints, normally http://127.0.0.1:8787.
 Edit `public/index.html` for the copy and `public/styles.css` for the design.
 
+## First-step publishing scaffold (local only)
+
+There is also a separate preview of the future reading site: a library, sample
+publication pages with human/AI credits, and an about page.
+
+```powershell
+npm run review
+```
+
+Open `http://127.0.0.1:4321/`. This command uses only Node's built-in modules and
+does not need a Cloudflare login. Files in `preview/` rebuild on changes; refresh
+the page to see edits. Press Ctrl+C to stop.
+
+See [the preview guide](preview/README.md) for editing the examples and attaching
+real publication repositories. `npm run build:review` builds into the ignored
+`.preview-dist/` directory without starting a server.
+
+**The preview is not published by `npm run deploy`.** That command still uploads
+only `public/`, containing the simple coming-soon page. The sample publications
+and their credits are provisional material for local review.
+
 ## Cloudflare configuration
 
 - Account: `2eff40a2255f98ece1b44ccb4cc0f22e`

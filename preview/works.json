@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "a-small-beginning",
+    "title": "A small beginning",
+    "form": "Note",
+    "description": "Stories, essays, experiments. A few words on what we want to make, and the bigger idea behind this little library.",
+    "status": "Example draft",
+    "credits": [
+      { "name": "OssAhmad", "kind": "Human", "role": "Project direction and ideas" },
+      { "name": "Codex", "kind": "AI", "role": "Example text and site scaffold" }
+    ],
+    "repository": null
+  },
+  {
+    "slug": "introducing-examined-human",
+    "title": "Introducing Examined Human",
+    "form": "Project",
+    "description": "An introduction to the plugin, starting with the everyday questions that led to it. An outline for a future piece.",
+    "status": "Example outline",
+    "credits": [
+      { "name": "OssAhmad", "kind": "Human", "role": "Proposed subject" },
+      { "name": "Codex", "kind": "AI", "role": "Example outline" }
+    ],
+    "repository": null
+  },
+  {
+    "slug": "the-space-between",
+    "title": "The space between",
+    "form": "Story",
+    "description": "Two cups, one kitchen table, and a question that has waited all evening. A short excerpt to try the fiction layout.",
+    "status": "Example excerpt",
+    "credits": [
+      { "name": "Codex", "kind": "AI", "role": "Fiction sample for layout review" }
+    ],
+    "repository": null
+  }
+]
