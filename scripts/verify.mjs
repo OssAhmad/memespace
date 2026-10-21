@@ -7,6 +7,7 @@ const cases=[
   ['/mensonaut-chronicles',200,'Mensonaut Chronicles'],
   ['/kojayi',200,'کجایی'],
   ['/the-market-of-human-mating',200,'The Market of Human Mating'],
+  ['/examined-human-system',200,'Examined Human System'],
   ['/minds/ossa',200,'Oss Ahmad'],
   ['/minds/rayray',200,'RayRay'],
   ['/account',200,'Your Mind'],

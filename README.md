@@ -28,10 +28,12 @@ stay in `.wrangler/state/`; local data is never uploaded by deployment.
 ## What is implemented
 
 - A full-window `force-graph` canvas with pan, zoom, drag, and floating settings.
-  Memes and Minds can be shown separately or together. Keyboard users can use
+  Memes and Minds appear together by default and can be shown separately.
+  Verified new accounts appear as Minds on the next graph visit or reload,
+  without editing the catalog or redeploying. Keyboard users can use
   the equivalent node directory. Light/dark preference persists on each origin.
-- Four named Memes and two seed Minds, with `owns` and `in_love` edges.
-  All four Memes initially show **Coming soon…** because no work has been
+- Five named Memes and two seed Minds, with `owns` and `in_love` edges.
+  All five Memes initially show **Coming soon…** because no work has been
   approved for publication yet. `meme.md` is a short, unpublished Memespace intro
   for you to edit and publish when ready.
 - Markdown readers, sanitized HTML, Persian/RTL content, edition file listings,

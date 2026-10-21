@@ -24,10 +24,13 @@ reader's request. No R2, KV, queues, paid graph service, or webhook is required.
   hashes and own a Mind; public Mind records have a name, type, and bio.
 - Edge IDs are stable. `owns`, `in_love`, and `references` have explicit labels
   and direction. All edge endpoints must be visible for an edge to render.
-- Initial Memes-only view: four nodes, no edges. Minds-only: the two seed Minds
-  and their `in_love` edge. Both: six nodes and five edges.
+- The opening view shows both Memes and Minds: seven catalog nodes and six edges,
+  plus registered Minds from D1. Visitors can filter to either type. Memes-only:
+  five nodes, no edges. Minds-only: the two seed Minds and their `in_love` edge,
+  plus registered Minds.
 - Additional registered Minds are queried from D1 in batches of at most 100.
-  The initial browser view loads one batch; a direct ID URL can fetch a Mind
+  Every graph visit or reload loads one fresh batch, so verified signups appear
+  without a build, deploy, or catalog JSON change. A direct ID URL can fetch a Mind
   outside it. The UI states when more Minds exist.
 - Reactions are the source of truth for appreciation and belief; they are not
   duplicated into a second writable graph table. Belief edges/filters are not

@@ -5,6 +5,7 @@
     { "id": "meme-mensonaut", "slug": "mensonaut-chronicles", "kind": "meme", "title": "Mensonaut Chronicles", "summary": "", "language": "en", "repository": "https://github.com/OssAhmad/mensonaut-chronicles", "entry": "meme.md", "publication": null },
     { "id": "meme-kojayi", "slug": "kojayi", "kind": "meme", "title": "کجایی؟", "summary": "", "language": "fa", "repository": "https://github.com/OssAhmad/Kojaie-story", "entry": "meme.md", "publication": null },
     { "id": "meme-mating-market", "slug": "the-market-of-human-mating", "kind": "meme", "title": "The Market of Human Mating", "summary": "", "language": "en", "repository": "https://github.com/OssAhmad/market-for-human-mating", "entry": "meme.md", "publication": null },
+    { "id": "meme-examined-human", "slug": "examined-human-system", "kind": "meme", "title": "Examined Human System", "summary": "", "language": "en", "repository": "https://github.com/OssAhmad/obsidian-examined-human", "entry": "meme.md", "publication": null },
     { "id": "mind-ossa", "slug": "ossa", "kind": "mind", "subtype": "human", "title": "Oss Ahmad", "summary": "", "repository": null },
     { "id": "mind-rayray", "slug": "rayray", "kind": "mind", "subtype": "human", "title": "RayRay", "summary": "", "repository": null }
   ],
@@ -13,6 +14,7 @@
     { "id": "edge-owner-memespace", "source": "mind-ossa", "target": "meme-memespace", "type": "owns" },
     { "id": "edge-owner-mensonaut", "source": "mind-ossa", "target": "meme-mensonaut", "type": "owns" },
     { "id": "edge-owner-kojayi", "source": "mind-ossa", "target": "meme-kojayi", "type": "owns" },
-    { "id": "edge-owner-mating-market", "source": "mind-ossa", "target": "meme-mating-market", "type": "owns" }
+    { "id": "edge-owner-mating-market", "source": "mind-ossa", "target": "meme-mating-market", "type": "owns" },
+    { "id": "edge-owner-examined-human", "source": "mind-ossa", "target": "meme-examined-human", "type": "owns" }
   ]
 }

@@ -106,7 +106,7 @@ Never deploy with the local config. The scripts do not run remote migrations
 implicitly; apply new migrations explicitly before a later release that needs them.
 
 The first deployment replaces the simple coming-soon homepage with the graph.
-The four Meme readers remain coming-soon pages until you publish their editions.
+The five Meme readers remain coming-soon pages until you publish their editions.
 
 ## 5. Verify both addresses
 

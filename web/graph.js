@@ -58,7 +58,7 @@ export async function initGraph() {
   function writeUrl(){
     const url=new URL(location.href);url.searchParams.delete('types');
     const types=[memes.checked?'meme':null,minds.checked?'mind':null].filter(Boolean).join(',');
-    if(types!=='meme')url.searchParams.set('types',types);
+    if(types!=='meme,mind')url.searchParams.set('types',types);
     if(selected)url.searchParams.set('node',selected);else url.searchParams.delete('node');
     if(edgeFocus)url.searchParams.set('edge',edgeFocus);else url.searchParams.delete('edge');
     history.replaceState(null,'',url.pathname+url.search);
