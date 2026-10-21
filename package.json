@@ -6,8 +6,6 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "npm run build && npm run db:local && wrangler dev --config wrangler.local.jsonc --local --ip 127.0.0.1",
-    "review": "npm run dev",
-    "build:review": "npm run build",
     "db:local": "wrangler d1 migrations apply DB --local --config wrangler.local.jsonc",
     "configure:d1": "node scripts/configure-d1.mjs",
     "publish:meme": "node scripts/import-meme.mjs",

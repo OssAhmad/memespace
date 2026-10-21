@@ -11,7 +11,6 @@ const cases=[
   ['/minds/rayray',200,'RayRay'],
   ['/account',200,'Your Mind'],
   ['/admin',200,'Review the conversation'],
-  ['/coming-soon',200,'coming soon...'],
   ['/this-page-does-not-exist',404,'No node here'],
   ['/api/does-not-exist',404,'Not found']
 ];

@@ -45,9 +45,6 @@ stay in `.wrangler/state/`; local data is never uploaded by deployment.
   comments. Pending comments are visible only to their author and the owner.
 - An optional email claim for RayRay's existing Mind, configured before signup.
 
-The original minimal landing page is preserved in `public/` and is also built
-at `/coming-soon`. It is not the new graph homepage.
-
 ## Owner workflows
 
 - [Deploy to the shared Cloudflare Worker](DEPLOY.md)

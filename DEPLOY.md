@@ -136,7 +136,7 @@ Example links on either hostname:
 Before a later database migration, make a D1 backup/export or use Cloudflare's
 recovery tools. Worker rollback and database rollback are separate operations.
 Keep the successful Worker deployment/version identifier if you need to roll
-back the site code. The original minimal page files remain in `public/`.
+back the site code.
 
 Relevant Cloudflare docs: [D1 migrations](https://developers.cloudflare.com/d1/reference/migrations/),
 [Worker secrets](https://developers.cloudflare.com/workers/configuration/secrets/),

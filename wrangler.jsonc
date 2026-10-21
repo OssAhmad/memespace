@@ -10,12 +10,21 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*"]
+    "run_worker_first": [
+      "/api/*"
+    ]
   },
-  "d1_databases": [{
-    "binding": "DB",
-    "database_name": "memespace",
-    "database_id": "00000000-0000-0000-0000-000000000000",
-    "migrations_dir": "migrations"
-  }]
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "memespace",
+      "database_id": "106ec07e-7b29-440f-b133-d1f6b894b927",
+      "migrations_dir": "migrations"
+    },
+    {
+      "binding": "memespace",
+      "database_name": "memespace",
+      "database_id": "106ec07e-7b29-440f-b133-d1f6b894b927"
+    }
+  ]
 }
